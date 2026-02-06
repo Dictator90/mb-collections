@@ -1,0 +1,38 @@
+{
+  "name": "mb4it/collections",
+  "description": "Separate collections Illuminate\\Support\\Collections",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "type": "library",
+  "keywords": [
+    "collections",
+    "collect",
+    "illuminate",
+    "laravel"
+  ],
+  "authors": [
+    {
+      "name": "Maxim Bezvodinskikh",
+      "email": "m.bezvodinskikh@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "\\MB\\Support\\Collections\\": "src"
+    },
+    "files": [
+      "src/helpers.php",
+      "src/functions.php",
+      "src/alias.php"
+    ]
+  },
+  "require": {
+    "php": "^8.2",
+    "mb4it/stringable": "^1",
+    "illuminate/contracts": "^v12",
+    "illuminate/macroable": "^12",
+    "illuminate/conditionable": "^12",
+    "symfony/var-dumper": "^8.0",
+    "symfony/polyfill-php84": "^1.31"
+  }
+}
