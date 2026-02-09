@@ -28,7 +28,6 @@
   },
   "require": {
     "php": "^8.2",
-    "mb4it/stringable": "^1",
     "illuminate/contracts": "^v12",
     "illuminate/macroable": "^12",
     "illuminate/conditionable": "^12",
