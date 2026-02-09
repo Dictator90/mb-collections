@@ -18,7 +18,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "\\MB\\Support\\Collections\\": "src"
+      "\\MB\\Support\\": "src"
     },
     "files": [
       "src/helpers.php",
