@@ -5,8 +5,8 @@ namespace MB\Support;
 use ArrayAccess;
 use ArrayIterator;
 use MB\Support\Traits\EnumeratesValues;
-use Illuminate\Contracts\Support\CanBeEscapedWhenCastToString;
-use Illuminate\Support\Traits\Macroable;
+use MB\Support\Contracts\CanBeEscapedWhenCastToString;
+use MB\Support\Contracts\Arrayable;
 use InvalidArgumentException;
 use stdClass;
 use Stringable;
@@ -17,7 +17,7 @@ use Traversable;
  *
  * @template-covariant TValue
  *
- * @implements \ArrayAccess<TKey, TValue>
+ * @implements ArrayAccess<TKey, TValue>
  * @implements Enumerable<TKey, TValue>
  */
 class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerable
@@ -25,7 +25,7 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
     /**
      * @use EnumeratesValues<TKey, TValue>
      */
-    use EnumeratesValues, Macroable;
+    use EnumeratesValues;
 
     /**
      * The items contained in the collection.
@@ -37,7 +37,7 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
     /**
      * Create a new collection.
      *
-     * @param  \Illuminate\Contracts\Support\Arrayable<TKey, TValue>|iterable<TKey, TValue>|null  $items
+     * @param  Arrayable<TKey, TValue>|iterable<TKey, TValue>|null  $items
      */
     public function __construct($items = [])
     {
@@ -245,7 +245,7 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
      * @template TCrossJoinKey
      * @template TCrossJoinValue
      *
-     * @param  \Illuminate\Contracts\Support\Arrayable<TCrossJoinKey, TCrossJoinValue>|iterable<TCrossJoinKey, TCrossJoinValue>  ...$lists
+     * @param  Arrayable<TCrossJoinKey, TCrossJoinValue>|iterable<TCrossJoinKey, TCrossJoinValue>  ...$lists
      * @return static<int, array<int, TValue|TCrossJoinValue>>
      */
     public function crossJoin(...$lists)
@@ -258,7 +258,7 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
     /**
      * Get the items in the collection that are not present in the given items.
      *
-     * @param  \Illuminate\Contracts\Support\Arrayable<array-key, TValue>|iterable<array-key, TValue>  $items
+     * @param  Arrayable<array-key, TValue>|iterable<array-key, TValue>  $items
      * @return static
      */
     public function diff($items)
@@ -269,7 +269,7 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
     /**
      * Get the items in the collection that are not present in the given items, using the callback.
      *
-     * @param  \Illuminate\Contracts\Support\Arrayable<array-key, TValue>|iterable<array-key, TValue>  $items
+     * @param  Arrayable<array-key, TValue>|iterable<array-key, TValue>  $items
      * @param  callable(TValue, TValue): int  $callback
      * @return static
      */
@@ -281,7 +281,7 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
     /**
      * Get the items in the collection whose keys and values are not present in the given items.
      *
-     * @param  \Illuminate\Contracts\Support\Arrayable<TKey, TValue>|iterable<TKey, TValue>  $items
+     * @param  Arrayable<TKey, TValue>|iterable<TKey, TValue>  $items
      * @return static
      */
     public function diffAssoc($items)
@@ -292,7 +292,7 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
     /**
      * Get the items in the collection whose keys and values are not present in the given items, using the callback.
      *
-     * @param  \Illuminate\Contracts\Support\Arrayable<TKey, TValue>|iterable<TKey, TValue>  $items
+     * @param  Arrayable<TKey, TValue>|iterable<TKey, TValue>  $items
      * @param  callable(TKey, TKey): int  $callback
      * @return static
      */
@@ -304,7 +304,7 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
     /**
      * Get the items in the collection whose keys are not present in the given items.
      *
-     * @param  \Illuminate\Contracts\Support\Arrayable<TKey, mixed>|iterable<TKey, mixed>  $items
+     * @param  Arrayable<TKey, mixed>|iterable<TKey, mixed>  $items
      * @return static
      */
     public function diffKeys($items)
@@ -315,7 +315,7 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
     /**
      * Get the items in the collection whose keys are not present in the given items, using the callback.
      *
-     * @param  \Illuminate\Contracts\Support\Arrayable<TKey, mixed>|iterable<TKey, mixed>  $items
+     * @param  Arrayable<TKey, mixed>|iterable<TKey, mixed>  $items
      * @param  callable(TKey, TKey): int  $callback
      * @return static
      */
@@ -456,7 +456,7 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
     /**
      * Remove an item from the collection by key.
      *
-     * @param  \Illuminate\Contracts\Support\Arrayable<array-key, TValue>|iterable<array-key, TKey>|TKey  $keys
+     * @param  Arrayable<array-key, TValue>|iterable<array-key, TKey>|TKey  $keys
      * @return $this
      */
     public function forget($keys)
@@ -641,7 +641,7 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
     /**
      * Intersect the collection with the given items.
      *
-     * @param  \Illuminate\Contracts\Support\Arrayable<TKey, TValue>|iterable<TKey, TValue>  $items
+     * @param  Arrayable<TKey, TValue>|iterable<TKey, TValue>  $items
      * @return static
      */
     public function intersect($items)
@@ -652,7 +652,7 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
     /**
      * Intersect the collection with the given items, using the callback.
      *
-     * @param  \Illuminate\Contracts\Support\Arrayable<array-key, TValue>|iterable<array-key, TValue>  $items
+     * @param  Arrayable<array-key, TValue>|iterable<array-key, TValue>  $items
      * @param  callable(TValue, TValue): int  $callback
      * @return static
      */
@@ -664,7 +664,7 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
     /**
      * Intersect the collection with the given items with additional index check.
      *
-     * @param  \Illuminate\Contracts\Support\Arrayable<TKey, TValue>|iterable<TKey, TValue>  $items
+     * @param  Arrayable<TKey, TValue>|iterable<TKey, TValue>  $items
      * @return static
      */
     public function intersectAssoc($items)
@@ -675,7 +675,7 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
     /**
      * Intersect the collection with the given items with additional index check, using the callback.
      *
-     * @param  \Illuminate\Contracts\Support\Arrayable<array-key, TValue>|iterable<array-key, TValue>  $items
+     * @param  Arrayable<array-key, TValue>|iterable<array-key, TValue>  $items
      * @param  callable(TValue, TValue): int  $callback
      * @return static
      */
@@ -687,7 +687,7 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
     /**
      * Intersect the collection with the given items by key.
      *
-     * @param  \Illuminate\Contracts\Support\Arrayable<TKey, mixed>|iterable<TKey, mixed>  $items
+     * @param  Arrayable<TKey, mixed>|iterable<TKey, mixed>  $items
      * @return static
      */
     public function intersectByKeys($items)
@@ -858,7 +858,7 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
     /**
      * Merge the collection with the given items.
      *
-     * @param  \Illuminate\Contracts\Support\Arrayable<TKey, TValue>|iterable<TKey, TValue>  $items
+     * @param  Arrayable<TKey, TValue>|iterable<TKey, TValue>  $items
      * @return static
      */
     public function merge($items)
@@ -871,7 +871,7 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
      *
      * @template TMergeRecursiveValue
      *
-     * @param  \Illuminate\Contracts\Support\Arrayable<TKey, TMergeRecursiveValue>|iterable<TKey, TMergeRecursiveValue>  $items
+     * @param  Arrayable<TKey, TMergeRecursiveValue>|iterable<TKey, TMergeRecursiveValue>  $items
      * @return static<TKey, TValue|TMergeRecursiveValue>
      */
     public function mergeRecursive($items)
@@ -901,7 +901,7 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
      *
      * @template TCombineValue
      *
-     * @param  \Illuminate\Contracts\Support\Arrayable<array-key, TCombineValue>|iterable<array-key, TCombineValue>  $values
+     * @param  Arrayable<array-key, TCombineValue>|iterable<array-key, TCombineValue>  $values
      * @return static<TValue, TCombineValue>
      */
     public function combine($values)
@@ -912,7 +912,7 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
     /**
      * Union the collection with the given items.
      *
-     * @param  \Illuminate\Contracts\Support\Arrayable<TKey, TValue>|iterable<TKey, TValue>  $items
+     * @param  Arrayable<TKey, TValue>|iterable<TKey, TValue>  $items
      * @return static
      */
     public function union($items)
@@ -1132,7 +1132,7 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
     /**
      * Replace the collection items with the given items.
      *
-     * @param  \Illuminate\Contracts\Support\Arrayable<TKey, TValue>|iterable<TKey, TValue>  $items
+     * @param  Arrayable<TKey, TValue>|iterable<TKey, TValue>  $items
      * @return static
      */
     public function replace($items)
@@ -1143,7 +1143,7 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
     /**
      * Recursively replace the collection items with the given items.
      *
-     * @param  \Illuminate\Contracts\Support\Arrayable<TKey, TValue>|iterable<TKey, TValue>  $items
+     * @param  Arrayable<TKey, TValue>|iterable<TKey, TValue>  $items
      * @return static
      */
     public function replaceRecursive($items)
@@ -1799,7 +1799,7 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
      *
      * @template TZipValue
      *
-     * @param  \Illuminate\Contracts\Support\Arrayable<array-key, TZipValue>|iterable<array-key, TZipValue>  ...$items
+     * @param  Arrayable<array-key, TZipValue>|iterable<array-key, TZipValue>  ...$items
      * @return static<int, static<int, TValue|TZipValue>>
      */
     public function zip($items)

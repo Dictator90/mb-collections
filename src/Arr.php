@@ -5,9 +5,8 @@ namespace MB\Support;
 use ArgumentCountError;
 use ArrayAccess;
 use Closure;
-use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Contracts\Support\Jsonable;
-use Illuminate\Support\Traits\Macroable;
+use MB\Support\Contracts\Arrayable;
+use MB\Support\Contracts\Jsonable;
 use InvalidArgumentException;
 use JsonSerializable;
 use Random\Randomizer;
@@ -16,8 +15,6 @@ use WeakMap;
 
 class Arr
 {
-    use Macroable;
-
     /**
      * Determine whether the given value is array accessible.
      *

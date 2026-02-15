@@ -7,7 +7,7 @@ namespace MB\Support;
  *
  * @template-covariant TValue
  *
- * @mixin \MB\Support\Enumerable<TKey, TValue>
+ * @mixin Enumerable<TKey, TValue>
  * @mixin TValue
  */
 class HigherOrderCollectionProxy
@@ -15,7 +15,7 @@ class HigherOrderCollectionProxy
     /**
      * The collection being operated on.
      *
-     * @var \MB\Support\Enumerable<TKey, TValue>
+     * @var Enumerable<TKey, TValue>
      */
     protected $collection;
 
@@ -29,8 +29,8 @@ class HigherOrderCollectionProxy
     /**
      * Create a new proxy instance.
      *
-     * @param  \MB\Support\Enumerable<TKey, TValue>  $collection
-     * @param  string  $method
+     * @param Enumerable<TKey, TValue> $collection
+     * @param string $method
      */
     public function __construct(Enumerable $collection, $method)
     {
@@ -41,7 +41,7 @@ class HigherOrderCollectionProxy
     /**
      * Proxy accessing an attribute onto the collection items.
      *
-     * @param  string  $key
+     * @param string $key
      * @return mixed
      */
     public function __get($key)
@@ -54,8 +54,8 @@ class HigherOrderCollectionProxy
     /**
      * Proxy a method call onto the collection items.
      *
-     * @param  string  $method
-     * @param  array  $parameters
+     * @param string $method
+     * @param array $parameters
      * @return mixed
      */
     public function __call($method, $parameters)

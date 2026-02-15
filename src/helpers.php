@@ -2,16 +2,17 @@
 
 use MB\Support\Arr;
 use MB\Support\Collection;
+use MB\Support\Contracts\Arrayable;
 
-if (! function_exists('collect')) {
+if (!function_exists('collect')) {
     /**
      * Create a collection from the given value.
      *
      * @template TKey of array-key
      * @template TValue
      *
-     * @param  \Illuminate\Contracts\Support\Arrayable<TKey, TValue>|iterable<TKey, TValue>|null  $value
-     * @return \MB\Support\Collection<TKey, TValue>
+     * @param  Arrayable<TKey, TValue>|iterable<TKey, TValue>|null  $value
+     * @return Collection<TKey, TValue>
      */
     function collect($value = [])
     {
@@ -19,7 +20,7 @@ if (! function_exists('collect')) {
     }
 }
 
-if (! function_exists('data_fill')) {
+if (!function_exists('data_fill')) {
     /**
      * Fill in data where it's missing.
      *
@@ -34,7 +35,7 @@ if (! function_exists('data_fill')) {
     }
 }
 
-if (! function_exists('data_get')) {
+if (!function_exists('data_get')) {
     /**
      * Get an item from an array or object using "dot" notation.
      *
@@ -96,7 +97,7 @@ if (! function_exists('data_get')) {
     }
 }
 
-if (! function_exists('data_set')) {
+if (!function_exists('data_set')) {
     /**
      * Set an item on an array or object using dot notation.
      *
@@ -158,7 +159,7 @@ if (! function_exists('data_set')) {
     }
 }
 
-if (! function_exists('data_forget')) {
+if (!function_exists('data_forget')) {
     /**
      * Remove / unset an item from an array or object using "dot" notation.
      *
@@ -194,7 +195,7 @@ if (! function_exists('data_forget')) {
     }
 }
 
-if (! function_exists('head')) {
+if (!function_exists('head')) {
     /**
      * Get the first element of an array. Useful for method chaining.
      *
@@ -207,7 +208,7 @@ if (! function_exists('head')) {
     }
 }
 
-if (! function_exists('last')) {
+if (!function_exists('last')) {
     /**
      * Get the last element from an array.
      *
@@ -220,7 +221,7 @@ if (! function_exists('last')) {
     }
 }
 
-if (! function_exists('value')) {
+if (!function_exists('value')) {
     /**
      * Return the default value of the given value.
      *
@@ -237,7 +238,7 @@ if (! function_exists('value')) {
     }
 }
 
-if (! function_exists('when')) {
+if (!function_exists('when')) {
     /**
      * Return a value if the given condition is true.
      *

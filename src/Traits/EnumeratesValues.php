@@ -6,13 +6,13 @@ use BackedEnum;
 use CachingIterator;
 use Closure;
 use Exception;
-use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Contracts\Support\Jsonable;
+use MB\Support\Contracts\Arrayable;
+use MB\Support\Contracts\Jsonable;
 use MB\Support\Arr;
 use MB\Support\Collection;
 use MB\Support\Enumerable;
-use Illuminate\Support\HigherOrderCollectionProxy;
-use Illuminate\Support\Traits\Conditionable;
+use MB\Support\HigherOrderCollectionProxy;
+use MB\Support\Traits\Conditionable;
 use JsonSerializable;
 use UnexpectedValueException;
 use UnitEnum;
@@ -110,7 +110,7 @@ trait EnumeratesValues
      * @template TMakeKey of array-key
      * @template TMakeValue
      *
-     * @param  \Illuminate\Contracts\Support\Arrayable<TMakeKey, TMakeValue>|iterable<TMakeKey, TMakeValue>|null  $items
+     * @param  Arrayable<TMakeKey, TMakeValue>|iterable<TMakeKey, TMakeValue>|null  $items
      * @return static<TMakeKey, TMakeValue>
      */
     public static function make($items = [])
@@ -434,7 +434,7 @@ trait EnumeratesValues
      * @template TFlatMapKey of array-key
      * @template TFlatMapValue
      *
-     * @param  callable(TValue, TKey): (\Illuminate\Support\Collection<TFlatMapKey, TFlatMapValue>|array<TFlatMapKey, TFlatMapValue>)  $callback
+     * @param  callable(TValue, TKey): (Collection<TFlatMapKey, TFlatMapValue>|array<TFlatMapKey, TFlatMapValue>)  $callback
      * @return static<TFlatMapKey, TFlatMapValue>
      */
     public function flatMap(callable $callback)
@@ -667,7 +667,7 @@ trait EnumeratesValues
      * Filter items by the given key value pair.
      *
      * @param  string  $key
-     * @param  \Illuminate\Contracts\Support\Arrayable|iterable  $values
+     * @param  Arrayable|iterable  $values
      * @param  bool  $strict
      * @return static
      */
@@ -682,7 +682,7 @@ trait EnumeratesValues
      * Filter items by the given key value pair using strict comparison.
      *
      * @param  string  $key
-     * @param  \Illuminate\Contracts\Support\Arrayable|iterable  $values
+     * @param  Arrayable|iterable  $values
      * @return static
      */
     public function whereInStrict($key, $values)
@@ -694,7 +694,7 @@ trait EnumeratesValues
      * Filter items such that the value of the given key is between the given values.
      *
      * @param  string  $key
-     * @param  \Illuminate\Contracts\Support\Arrayable|iterable  $values
+     * @param  Arrayable|iterable  $values
      * @return static
      */
     public function whereBetween($key, $values)
@@ -706,7 +706,7 @@ trait EnumeratesValues
      * Filter items such that the value of the given key is not between the given values.
      *
      * @param  string  $key
-     * @param  \Illuminate\Contracts\Support\Arrayable|iterable  $values
+     * @param  Arrayable|iterable  $values
      * @return static
      */
     public function whereNotBetween($key, $values)
@@ -720,7 +720,7 @@ trait EnumeratesValues
      * Filter items by the given key value pair.
      *
      * @param  string  $key
-     * @param  \Illuminate\Contracts\Support\Arrayable|iterable  $values
+     * @param  Arrayable|iterable  $values
      * @param  bool  $strict
      * @return static
      */
@@ -735,7 +735,7 @@ trait EnumeratesValues
      * Filter items by the given key value pair using strict comparison.
      *
      * @param  string  $key
-     * @param  \Illuminate\Contracts\Support\Arrayable|iterable  $values
+     * @param  Arrayable|iterable  $values
      * @return static
      */
     public function whereNotInStrict($key, $values)
@@ -937,7 +937,7 @@ trait EnumeratesValues
     /**
      * Collect the values into a collection.
      *
-     * @return \Illuminate\Support\Collection<TKey, TValue>
+     * @return Collection<TKey, TValue>
      */
     public function collect()
     {

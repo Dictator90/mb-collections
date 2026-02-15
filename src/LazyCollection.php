@@ -6,10 +6,9 @@ use ArrayIterator;
 use Closure;
 use DateTimeInterface;
 use Generator;
-use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Contracts\Support\CanBeEscapedWhenCastToString;
+use MB\Support\Contracts\Arrayable;
+use MB\Support\Contracts\CanBeEscapedWhenCastToString;
 use MB\Support\Traits\EnumeratesValues;
-use Illuminate\Support\Traits\Macroable;
 use InvalidArgumentException;
 use IteratorAggregate;
 use stdClass;
@@ -20,14 +19,14 @@ use Traversable;
  *
  * @template-covariant TValue
  *
- * @implements \MB\Support\Enumerable<TKey, TValue>
+ * @implements Enumerable<TKey, TValue>
  */
 class LazyCollection implements CanBeEscapedWhenCastToString, Enumerable
 {
     /**
-     * @use \MB\Support\Traits\EnumeratesValues<TKey, TValue>
+     * @use EnumeratesValues<TKey, TValue>
      */
-    use EnumeratesValues, Macroable;
+    use EnumeratesValues;
 
     /**
      * The source from which to generate items.
