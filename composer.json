@@ -28,9 +28,6 @@
   },
   "require": {
     "php": "^8.2",
-    "illuminate/contracts": "^v12",
-    "illuminate/macroable": "^12",
-    "illuminate/conditionable": "^12",
     "symfony/var-dumper": "^8.0",
     "symfony/polyfill-php84": "^1.31"
   }
