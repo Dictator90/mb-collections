@@ -17,7 +17,7 @@ use Traversable;
  *
  * @template-covariant TValue
  *
- * @implements ArrayAccess<TKey, TValue>
+ * @implements \ArrayAccess<TKey, TValue>
  * @implements Enumerable<TKey, TValue>
  */
 class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerable
@@ -479,11 +479,7 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
      */
     public function get($key, $default = null)
     {
-        if (array_key_exists($key, $this->items)) {
-            return $this->items[$key];
-        }
-
-        return value($default);
+        return Arr::get($this->items, $key, $default);
     }
 
     /**
@@ -497,8 +493,8 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
      */
     public function getOrPut($key, $value)
     {
-        if (array_key_exists($key, $this->items)) {
-            return $this->items[$key];
+        if ($v = $this->get($key)) {
+            return $v;
         }
 
         $this->offsetSet($key, $value = value($value));

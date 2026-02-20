@@ -12,7 +12,6 @@ use MB\Support\Arr;
 use MB\Support\Collection;
 use MB\Support\Enumerable;
 use MB\Support\HigherOrderCollectionProxy;
-use MB\Support\Traits\Conditionable;
 use JsonSerializable;
 use UnexpectedValueException;
 use UnitEnum;
